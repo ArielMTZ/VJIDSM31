@@ -1,0 +1,865 @@
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            overflow: hidden;
+            background: #050505;
+            font-family: "Trebuchet MS", Arial, sans-serif;
+            color: white;
+        }
+
+        .trailer {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 78% 18%, rgba(255, 225, 140, 0.9) 0 6%, transparent 9%),
+                linear-gradient(to bottom, #101b2d 0%, #1f3145 38%, #314424 70%, #0b1208 100%);
+            animation: camara 14s infinite alternate ease-in-out;
+        }
+
+        .trailer::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle, transparent 42%, rgba(0,0,0,0.72) 100%);
+            z-index: 50;
+            pointer-events: none;
+        }
+
+        /* Luna */
+        .luna {
+            position: absolute;
+            top: 55px;
+            right: 110px;
+            width: 125px;
+            height: 125px;
+            background: #ffe59a;
+            border-radius: 50%;
+            box-shadow: 0 0 55px #ffe59a;
+            z-index: 2;
+            animation: brilloLuna 3s infinite alternate;
+        }
+
+        @keyframes brilloLuna {
+            from {
+                box-shadow: 0 0 35px #ffe59a;
+            }
+            to {
+                box-shadow: 0 0 85px #fff0b8;
+            }
+        }
+
+        /* Estrellas */
+        .estrellas {
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(#fff 1px, transparent 1px),
+                radial-gradient(#ffe9a8 1px, transparent 1px);
+            background-size: 90px 90px, 150px 150px;
+            opacity: 0.45;
+            animation: estrellas 2s infinite alternate;
+            z-index: 1;
+        }
+
+        @keyframes estrellas {
+            from {
+                opacity: 0.25;
+            }
+            to {
+                opacity: 0.65;
+            }
+        }
+
+        /* Montañas */
+        .montanas {
+            position: absolute;
+            bottom: 260px;
+            width: 100%;
+            height: 330px;
+            z-index: 5;
+        }
+
+        .montana {
+            position: absolute;
+            bottom: 0;
+            width: 0;
+            height: 0;
+            border-left: 220px solid transparent;
+            border-right: 220px solid transparent;
+            border-bottom: 310px solid #182538;
+            filter: drop-shadow(0 20px 12px rgba(0,0,0,0.4));
+        }
+
+        .montana::after {
+            content: "";
+            position: absolute;
+            top: 80px;
+            left: -130px;
+            width: 260px;
+            height: 130px;
+            background: rgba(255,255,255,0.12);
+            clip-path: polygon(50% 0, 100% 100%, 0 100%);
+        }
+
+        .m1 {
+            left: -120px;
+            transform: scale(1.1);
+        }
+
+        .m2 {
+            left: 230px;
+            border-bottom-color: #22324a;
+            transform: scale(0.95);
+        }
+
+        .m3 {
+            right: 200px;
+            border-bottom-color: #1b2b3f;
+            transform: scale(1.2);
+        }
+
+        .m4 {
+            right: -130px;
+            border-bottom-color: #24394f;
+            transform: scale(0.95);
+        }
+
+        /* Niebla */
+        .niebla {
+            position: absolute;
+            bottom: 140px;
+            width: 220%;
+            height: 210px;
+            background:
+                radial-gradient(circle, rgba(255,255,255,0.2), transparent 60%),
+                radial-gradient(circle, rgba(255,255,255,0.13), transparent 65%),
+                radial-gradient(circle, rgba(255,255,255,0.1), transparent 70%);
+            background-size: 380px 150px, 500px 190px, 300px 140px;
+            filter: blur(8px);
+            opacity: 0.5;
+            animation: moverNiebla 16s linear infinite;
+            z-index: 12;
+        }
+
+        @keyframes moverNiebla {
+            from {
+                transform: translateX(-35%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        /* Bambú */
+        .bambu {
+            position: absolute;
+            bottom: 95px;
+            width: 24px;
+            height: 320px;
+            background:
+                repeating-linear-gradient(
+                    to bottom,
+                    #264d20 0px,
+                    #264d20 42px,
+                    #142d12 42px,
+                    #142d12 49px
+                );
+            border-radius: 14px;
+            z-index: 20;
+        }
+
+        .bambu::before,
+        .bambu::after {
+            content: "";
+            position: absolute;
+            width: 85px;
+            height: 25px;
+            background: #315f28;
+            border-radius: 100% 0 100% 0;
+        }
+
+        .bambu::before {
+            top: 65px;
+            left: 15px;
+            transform: rotate(-20deg);
+        }
+
+        .bambu::after {
+            top: 145px;
+            right: 15px;
+            transform: rotate(200deg);
+        }
+
+        .b1 {
+            left: 45px;
+            transform: rotate(-4deg);
+        }
+
+        .b2 {
+            left: 120px;
+            height: 380px;
+            transform: rotate(3deg);
+        }
+
+        .b3 {
+            right: 60px;
+            height: 360px;
+            transform: rotate(4deg);
+        }
+
+        .b4 {
+            right: 140px;
+            height: 300px;
+            transform: rotate(-3deg);
+        }
+
+        /* Suelo */
+        .suelo {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 170px;
+            background:
+                radial-gradient(circle at 25% 30%, rgba(125, 90, 35, 0.45), transparent 18%),
+                radial-gradient(circle at 70% 45%, rgba(115, 80, 30, 0.4), transparent 20%),
+                linear-gradient(to top, #050704, #19250d);
+            z-index: 18;
+        }
+
+        /* Templo */
+        .templo {
+            position: absolute;
+            bottom: 135px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 430px;
+            height: 320px;
+            z-index: 15;
+        }
+
+        .techo1 {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 470px;
+            height: 90px;
+            background: #6b1111;
+            transform: translateX(-50%);
+            clip-path: polygon(6% 55%, 50% 0, 94% 55%, 100% 85%, 0 85%);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.55);
+        }
+
+        .techo2 {
+            position: absolute;
+            top: 70px;
+            left: 50%;
+            width: 520px;
+            height: 90px;
+            background: #8d1a15;
+            transform: translateX(-50%);
+            clip-path: polygon(5% 50%, 50% 5%, 95% 50%, 100% 82%, 0 82%);
+            box-shadow: 0 15px 20px rgba(0,0,0,0.5);
+        }
+
+        .base-templo {
+            position: absolute;
+            bottom: 0;
+            left: 55px;
+            width: 320px;
+            height: 190px;
+            background:
+                linear-gradient(90deg, #5a2d15, #8c4a1e, #5a2d15);
+            border: 6px solid #2b1308;
+            box-shadow:
+                inset 0 0 30px rgba(0,0,0,0.5),
+                0 20px 30px rgba(0,0,0,0.6);
+        }
+
+        .puerta {
+            position: absolute;
+            bottom: 0;
+            left: 113px;
+            width: 95px;
+            height: 130px;
+            background: #1b0d06;
+            border: 5px solid #3d1b0b;
+            box-shadow: inset 0 0 30px #000;
+        }
+
+        .ventana {
+            position: absolute;
+            top: 50px;
+            width: 55px;
+            height: 55px;
+            background: #ffd06d;
+            border: 4px solid #321608;
+            box-shadow: 0 0 18px #ffd06d;
+            animation: luzTemplo 3s infinite alternate;
+        }
+
+        .v1 {
+            left: 35px;
+        }
+
+        .v2 {
+            right: 35px;
+        }
+
+        @keyframes luzTemplo {
+            from {
+                opacity: 0.5;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .columna {
+            position: absolute;
+            bottom: 0;
+            width: 20px;
+            height: 170px;
+            background: #351607;
+        }
+
+        .c1 {
+            left: 45px;
+        }
+
+        .c2 {
+            right: 45px;
+        }
+
+        /* Energía chi */
+        .chi {
+            position: absolute;
+            top: 42%;
+            left: 50%;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            background:
+                radial-gradient(circle, rgba(255,228,120,0.9) 0 10%, rgba(255,140,0,0.35) 35%, transparent 70%);
+            box-shadow:
+                0 0 40px #ffca3a,
+                0 0 90px rgba(255, 166, 0, 0.7);
+            opacity: 0;
+            animation: chi 18s infinite;
+            z-index: 23;
+        }
+
+        @keyframes chi {
+            0%, 38%, 100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.4);
+            }
+
+            45%, 75% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+            90% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(1.8);
+            }
+        }
+
+        /* Dragón de energía */
+        .dragon {
+            position: absolute;
+            top: 30%;
+            left: -220px;
+            width: 220px;
+            height: 80px;
+            z-index: 24;
+            animation: dragonVuela 18s infinite;
+            filter: drop-shadow(0 0 15px #ffcf40);
+        }
+
+        .dragon .cuerpo {
+            position: absolute;
+            width: 180px;
+            height: 35px;
+            background: linear-gradient(90deg, #ffcc33, #ff8c00);
+            border-radius: 50%;
+            top: 25px;
+            left: 30px;
+            animation: serpiente 1s infinite alternate ease-in-out;
+        }
+
+        .dragon .cabeza {
+            position: absolute;
+            right: -5px;
+            top: 10px;
+            width: 55px;
+            height: 55px;
+            background: #ffb000;
+            border-radius: 45% 55% 45% 55%;
+        }
+
+        .dragon .cabeza::before {
+            content: "";
+            position: absolute;
+            top: 18px;
+            right: 8px;
+            width: 9px;
+            height: 9px;
+            background: #111;
+            border-radius: 50%;
+        }
+
+        .dragon .cola {
+            position: absolute;
+            left: 0;
+            top: 32px;
+            width: 75px;
+            height: 18px;
+            background: #ffdf65;
+            clip-path: polygon(0 50%, 100% 0, 100% 100%);
+        }
+
+        @keyframes dragonVuela {
+            0%, 42% {
+                left: -240px;
+                opacity: 0;
+                transform: scale(0.6) rotate(0deg);
+            }
+
+            50%, 75% {
+                opacity: 1;
+            }
+
+            85% {
+                left: 115%;
+                opacity: 0;
+                transform: scale(1.1) rotate(-8deg);
+            }
+
+            100% {
+                left: 115%;
+                opacity: 0;
+            }
+        }
+
+        @keyframes serpiente {
+            from {
+                transform: translateY(-4px) rotate(2deg);
+            }
+            to {
+                transform: translateY(4px) rotate(-2deg);
+            }
+        }
+
+        /* Panda */
+        .panda {
+            position: absolute;
+            bottom: 85px;
+            left: -180px;
+            width: 160px;
+            height: 260px;
+            z-index: 30;
+            animation: entraPanda 18s infinite;
+        }
+
+        @keyframes entraPanda {
+            0% {
+                left: -190px;
+                transform: scale(0.9);
+            }
+
+            20%, 42% {
+                left: 42%;
+                transform: scale(1);
+            }
+
+            55%, 70% {
+                left: 42%;
+                transform: scale(1.05) rotate(-3deg);
+            }
+
+            100% {
+                left: 115%;
+                transform: scale(0.9);
+            }
+        }
+
+        .panda-cabeza {
+            position: absolute;
+            top: 0;
+            left: 35px;
+            width: 95px;
+            height: 88px;
+            background: #f4f4f4;
+            border-radius: 50%;
+            border: 4px solid #111;
+        }
+
+        .panda-oreja {
+            position: absolute;
+            top: -12px;
+            width: 35px;
+            height: 35px;
+            background: #111;
+            border-radius: 50%;
+        }
+
+        .panda-oreja.izq {
+            left: -12px;
+        }
+
+        .panda-oreja.der {
+            right: -12px;
+        }
+
+        .mancha {
+            position: absolute;
+            top: 32px;
+            width: 28px;
+            height: 22px;
+            background: #111;
+            border-radius: 50%;
+        }
+
+        .mancha.izq {
+            left: 18px;
+            transform: rotate(-20deg);
+        }
+
+        .mancha.der {
+            right: 18px;
+            transform: rotate(20deg);
+        }
+
+        .ojo {
+            position: absolute;
+            top: 38px;
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .ojo.izq {
+            left: 28px;
+        }
+
+        .ojo.der {
+            right: 28px;
+        }
+
+        .nariz {
+            position: absolute;
+            top: 54px;
+            left: 40px;
+            width: 14px;
+            height: 10px;
+            background: #111;
+            border-radius: 50%;
+        }
+
+        .sonrisa {
+            position: absolute;
+            top: 65px;
+            left: 34px;
+            width: 25px;
+            height: 12px;
+            border-bottom: 3px solid #111;
+            border-radius: 50%;
+        }
+
+        .panda-cuerpo {
+            position: absolute;
+            top: 85px;
+            left: 27px;
+            width: 105px;
+            height: 135px;
+            background: #f2f2f2;
+            border: 5px solid #111;
+            border-radius: 45% 45% 35% 35%;
+        }
+
+        .panda-cuerpo::before {
+            content: "";
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            width: 55px;
+            height: 80px;
+            background: #111;
+            border-radius: 50%;
+            opacity: 0.95;
+        }
+
+        .brazo {
+            position: absolute;
+            top: 100px;
+            width: 35px;
+            height: 90px;
+            background: #111;
+            border-radius: 30px;
+            transform-origin: top;
+        }
+
+        .brazo.izq {
+            left: 8px;
+            animation: golpeIzq 18s infinite;
+        }
+
+        .brazo.der {
+            right: 8px;
+            animation: golpeDer 18s infinite;
+        }
+
+        @keyframes golpeIzq {
+            0%, 45%, 100% {
+                transform: rotate(20deg);
+            }
+
+            55%, 70% {
+                transform: rotate(-75deg);
+            }
+        }
+
+        @keyframes golpeDer {
+            0%, 45%, 100% {
+                transform: rotate(-20deg);
+            }
+
+            55%, 70% {
+                transform: rotate(75deg);
+            }
+        }
+
+        .pierna {
+            position: absolute;
+            top: 210px;
+            width: 42px;
+            height: 55px;
+            background: #111;
+            border-radius: 25px;
+        }
+
+        .pierna.izq {
+            left: 35px;
+        }
+
+        .pierna.der {
+            right: 35px;
+        }
+
+        /* Efecto golpe */
+        .impacto {
+            position: absolute;
+            bottom: 240px;
+            left: 50%;
+            width: 130px;
+            height: 130px;
+            border: 8px solid #ffcc33;
+            border-radius: 50%;
+            transform: translateX(-50%) scale(0);
+            opacity: 0;
+            z-index: 31;
+            animation: impacto 18s infinite;
+            box-shadow: 0 0 40px #ffcc33;
+        }
+
+        @keyframes impacto {
+            0%, 54%, 100% {
+                transform: translateX(-50%) scale(0);
+                opacity: 0;
+            }
+
+            60% {
+                transform: translateX(-50%) scale(1);
+                opacity: 1;
+            }
+
+            70% {
+                transform: translateX(-50%) scale(2.4);
+                opacity: 0;
+            }
+        }
+
+        /* Logo */
+        .logo {
+            position: absolute;
+            top: 35px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 45;
+            opacity: 0;
+            animation: logoEntrada 18s infinite;
+        }
+
+        .logo .kung {
+            display: block;
+            font-size: clamp(34px, 7vw, 85px);
+            color: #ffd33d;
+            text-shadow:
+                4px 4px 0 #7a170a,
+                0 0 25px rgba(255, 211, 61, 0.7);
+            letter-spacing: 4px;
+            font-weight: 900;
+        }
+
+        .logo .panda {
+            position: static;
+            display: block;
+            width: auto;
+            height: auto;
+            animation: none;
+            font-size: clamp(28px, 5vw, 58px);
+            color: #ffffff;
+            text-shadow:
+                3px 3px 0 #111,
+                0 0 18px rgba(255,255,255,0.5);
+            letter-spacing: 3px;
+            font-weight: 900;
+        }
+
+        .logo .cinco {
+            display: block;
+            font-size: clamp(42px, 8vw, 95px);
+            color: #e01b1b;
+            text-shadow:
+                4px 4px 0 #ffd33d,
+                0 0 25px rgba(224,27,27,0.8);
+            font-weight: 900;
+            line-height: 0.8;
+        }
+
+        @keyframes logoEntrada {
+            0%, 7% {
+                opacity: 0;
+                transform: translateX(-50%) scale(0.4);
+            }
+
+            12%, 30% {
+                opacity: 1;
+                transform: translateX(-50%) scale(1);
+            }
+
+            38%, 100% {
+                opacity: 0;
+            }
+        }
+
+        /* Texto trailer */
+        .texto {
+            position: absolute;
+            bottom: 32px;
+            width: 100%;
+            text-align: center;
+            font-size: clamp(20px, 3vw, 42px);
+            font-weight: 900;
+            color: #fff3b0;
+            text-shadow:
+                0 0 12px #000,
+                3px 3px 0 #8f130b;
+            letter-spacing: 2px;
+            z-index: 60;
+            animation: textoFade 18s infinite;
+        }
+
+        .texto::after {
+            content: "CUANDO EL VALLE VUELVA A SER AMENAZADO...";
+            animation: frases 18s infinite;
+        }
+
+        @keyframes frases {
+            0%, 20% {
+                content: "CUANDO EL VALLE VUELVA A SER AMENAZADO...";
+            }
+
+            21%, 40% {
+                content: "UN NUEVO PODER DESPERTARÁ...";
+            }
+
+            41%, 60% {
+                content: "EL GUERRERO DRAGÓN REGRESA...";
+            }
+
+            61%, 80% {
+                content: "CON MÁS KUNG FU, MÁS CHI Y MÁS FIDEOS...";
+            }
+
+            81%, 100% {
+                content: "PRÓXIMAMENTE: KUNG FU PANDA 5";
+            }
+        }
+
+        @keyframes textoFade {
+            0%, 100% {
+                opacity: 0;
+            }
+
+            8%, 90% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes camara {
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.04);
+            }
+        }
+
+        @media (max-width: 700px) {
+            .luna {
+                right: 35px;
+                width: 90px;
+                height: 90px;
+            }
+
+            .templo {
+                transform: translateX(-50%) scale(0.72);
+                bottom: 115px;
+            }
+
+            .panda {
+                transform: scale(0.78);
+            }
+
+            @keyframes entraPanda {
+                0% {
+                    left: -190px;
+                    transform: scale(0.72);
+                }
+
+                20%, 42% {
+                    left: 35%;
+                    transform: scale(0.78);
+                }
+
+                55%, 70% {
+                    left: 35%;
+                    transform: scale(0.82) rotate(-3deg);
+                }
+
+                100% {
+                    left: 115%;
+                    transform: scale(0.72);
+                }
+            }
+
+            .b2,
+            .b4 {
+                display: none;
+            }
+        }
